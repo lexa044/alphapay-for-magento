@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Alphapay_Payment>
+			<version>1.0.0</version>
+		</Alphapay_Payment>
+	</modules>
+
+	<global>
+		<models>
+			<alphapay>
+				<class>Alphapay_Payment_Model</class>
+			</alphapay>
+		</models>
+
+		<blocks>
+			<alphapay>
+				<class>Alphapay_Payment_Block</class>
+			</alphapay>
+		</blocks>
+
+		<resources>
+			<alphapay_setup>
+				<setup>
+					<module>Alphapay_Payment</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</alphapay_setup>
+			<alphapay_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</alphapay_write>
+			<alphapay_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</alphapay_read>
+		</resources>
+		<helpers>
+			<alphapay>
+				<class>Alphapay_Payment_Helper</class>
+			</alphapay>
+		</helpers>	
+		<events>
+			<sales_model_service_quote_submit_success>
+				<observers>
+					<alphapay_sales_model_service_quote_submit_success>
+							<type>singleton</type>
+							<class>Alphapay_Payment_Model_Observer</class>
+							<method>sales_model_service_quote_submit_success</method>
+					</alphapay_sales_model_service_quote_submit_success>
+				</observers>
+			</sales_model_service_quote_submit_success>
+		</events>	
+	</global>
+
+
+	<frontend>
+		<secure_url>
+			<alphapay_redirect>/alphapay/redirect/00</alphapay_redirect>
+		</secure_url>
+		<routers>
+			<alphapay>
+				<use>standard</use>
+				<args>
+					<module>Alphapay_Payment</module>
+					<frontName>alphapay</frontName>
+				</args>
+			</alphapay>
+		</routers>
+		<translate>
+			<modules>
+				<Alphapay_Payment>
+					<files>
+						<default>Alphapay_Payment.csv</default>
+					</files>
+				</Alphapay_Payment>
+			</modules>
+		</translate>
+		<layout>
+            <updates>
+                <alphapay>
+                    <file>alphapay/layout.xml</file>
+                </alphapay>
+            </updates>
+        </layout>
+	</frontend>
+
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<Alphapay_Payment>
+					<files>
+						<default>Alphapay_Payment.csv</default>
+					</files>
+				</Alphapay_Payment>
+			</modules>
+		</translate>
+	</adminhtml>
+
+	<default>
+		<payment>
+			<alphapay>
+				<active>0</active>
+				<model>alphapay/alphapay</model>
+				<order_status>pending</order_status>
+				<title>Wechat Pay</title>
+				<description>You will be redirected to Wecha Pay payment when you place an order.</description>
+				<sort_order>0</sort_order>
+			</alphapay>
+		</payment>
+	</default>
+</config>

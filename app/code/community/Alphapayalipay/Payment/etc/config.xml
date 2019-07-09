@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+
+<config>
+	<modules>
+		<Alphapayalipay_Payment>
+			<version>1.0.0</version>
+		</Alphapayalipay_Payment>
+	</modules>
+
+	<global>
+		<models>
+			<alphapayalipay>
+				<class>Alphapayalipay_Payment_Model</class>
+			</alphapayalipay>
+		</models>
+
+		<blocks>
+			<alphapayalipay>
+				<class>Alphapayalipay_Payment_Block</class>
+			</alphapayalipay>
+		</blocks>
+
+		<resources>
+			<alphapayalipay_setup>
+				<setup>
+					<module>Alphapayalipay_Payment</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</alphapayalipay_setup>
+			<alphapayalipay_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</alphapayalipay_write>
+			<alphapayalipay_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</alphapayalipay_read>
+		</resources>
+		<helpers>
+			<alphapayalipay>
+				<class>Alphapayalipay_Payment_Helper</class>
+			</alphapayalipay>
+		</helpers>	
+		<events>
+			<sales_model_service_quote_submit_success>
+				<observers>
+					<alphapayalipay_sales_model_service_quote_submit_success>
+							<type>singleton</type>
+							<class>Alphapayalipay_Payment_Model_Observer</class>
+							<method>sales_model_service_quote_submit_success</method>
+					</alphapayalipay_sales_model_service_quote_submit_success>
+				</observers>
+			</sales_model_service_quote_submit_success>
+		</events>	
+	</global>
+
+
+	<frontend>
+		<secure_url>
+			<alphapayalipay_redirect>/alphapayalipay/redirect/00</alphapayalipay_redirect>
+		</secure_url>
+		<routers>
+			<alphapayalipay>
+				<use>standard</use>
+				<args>
+					<module>Alphapayalipay_Payment</module>
+					<frontName>alphapayalipay</frontName>
+				</args>
+			</alphapayalipay>
+		</routers>
+		<translate>
+			<modules>
+				<Alphapayalipay_Payment>
+					<files>
+						<default>Alphapayalipay_Payment.csv</default>
+					</files>
+				</Alphapayalipay_Payment>
+			</modules>
+		</translate>
+		<layout>
+            <updates>
+                <alphapayalipay>
+                    <file>alphapayalipay/layout.xml</file>
+                </alphapayalipay>
+            </updates>
+        </layout>
+	</frontend>
+
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<Alphapayalipay_Payment>
+					<files>
+						<default>Alphapayalipay_Payment.csv</default>
+					</files>
+				</Alphapayalipay_Payment>
+			</modules>
+		</translate>
+	</adminhtml>
+
+	<default>
+		<payment>
+			<alphapayalipay>
+				<active>0</active>
+				<model>alphapayalipay/alphapayalipay</model>
+				<order_status>pending</order_status>
+				<title>Alipay</title>
+				<description>You will be redirected to Alipay payment when you place an order.</description>
+				<sort_order>0</sort_order>
+			</alphapayalipay>
+		</payment>
+	</default>
+</config>

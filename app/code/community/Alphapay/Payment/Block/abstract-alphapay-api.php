@@ -113,7 +113,7 @@ abstract class Abstract_Magento_Alphapay_Api extends Mage_Payment_Block_Form {
             $block = $this->get_app()->getLayout()->createBlock('core/template', null, 
             	array(
             	'template' => 'alphapay/payment/payment_method_label.phtml', 
-            	'payment_method_icon' => $this->getSkinUrl('images/alphapay/logo.png'), 
+            	'payment_method_icon' => $this->getSkinUrl('images/alphapay/wechatpay.png'), 
             	'payment_method_label' => $this->hel('alphapay')->getConfigData('title'), 
             	'payment_method_class' => $code)
             );

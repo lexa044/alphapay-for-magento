@@ -113,7 +113,7 @@ public $i, $get, $ser;
             $block = $this->get_app()->getLayout()->createBlock('core/template', null, 
             	array(
             	'template' => 'alphapayalipay/payment/payment_method_label.phtml', 
-            	'payment_method_icon' => $this->getSkinUrl('images/alphapayalipay/logo.png'), 
+            	'payment_method_icon' => $this->getSkinUrl('images/alphapayalipay/alipay.png'), 
             	'payment_method_label' => $this->hel('alphapayalipay')->getConfigData('title'), 
             	'payment_method_class' => $code)
             );
